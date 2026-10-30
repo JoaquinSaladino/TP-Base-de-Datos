@@ -8,10 +8,12 @@ CREATE DOMAIN dominio_pais AS VARCHAR(30) CHECK (UPPER(pais) IN ('ARGENTINA', 'C
 
 CREATE TABLE Videos (
     enlace VARCHAR(255) PRIMARY KEY,
-    likes INT DEFAULT 0,
-    dislikes INT DEFAULT 0,
+    me_gustas INT DEFAULT 0,
+    no_me_gustas INT DEFAULT 0,
     precio_por_vista FLOAT DEFAULT 1,
-    vistas INT DEFAULT 0
+    vistas INT DEFAULT 0,
+    nombre_canal VARCHAR(32),
+    FOREIGN KEY (nombre_canal) REFERENCES Canales(nombre)
 );
 
 
@@ -24,14 +26,16 @@ CREATE TABLE Usuarios (
 
 CREATE TABLE Canales (
     nombre VARCHAR(32) PRIMARY KEY,
-    tema VARCHAR(32)
+    tema VARCHAR(32),
+    correo_usuario VARCHAR(64),
+    FOREIGN KEY (correo_usuario) REFERENCES Usuarios(correo)
 );
 
 
 CREATE TABLE Suscripciones (
-    correo VARCHAR(64),
-    nombre VARCHAR(32),
-    FOREIGN KEY (correo) REFERENCES Usuarios(correo),
-    FOREIGN KEY (nombre) REFERENCES Canales(nombre),
-    PRIMARY KEY (correo, nombre)
+    correo_usuario VARCHAR(64),
+    nombre_canal VARCHAR(32),
+    FOREIGN KEY (correo_usuario) REFERENCES Usuarios(correo),
+    FOREIGN KEY (nombre_canal) REFERENCES Canales(nombre),
+    PRIMARY KEY (correo_usuario, nombre_canal)
 );

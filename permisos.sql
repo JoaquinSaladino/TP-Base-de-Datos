@@ -31,7 +31,7 @@ CREATE VIEW vista_suscripciones AS
 SELECT *
 FROM suscripciones;
 
------------------------------Creacion de permisos de los usuarios
+----------------------------- Creacion de permisos de los usuarios
 
 REVOKE ALL PRIVILEGES
 ON TABLE usuarios, videos, canales, suscripciones

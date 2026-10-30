@@ -7,8 +7,8 @@ VALUES ('jsaladino@fi.uba.ar, Argentina, 1000');
 -- Editar un usuario.
 
 UPDATE Usuarios
-SET ingreso = ingreso + 1
-WHERE correo = 'jsaladino@fi.uba.ar'; 
+SET ingresos = ingresos + 1
+WHERE correo = 'jsaladino@fi.uba.ar';
 
 
 -- Eliminar un usuario.
@@ -20,8 +20,8 @@ WHERE correo = 'jsaladino@fi.uba.ar';
 
 -- Crear un video.
 
-INSERT INTO Videos (enlace, precio_por_vista)
-VALUES ('https://www.youtube.com/watch?v=hPr-Yc92qaY', 2);
+INSERT INTO Videos (enlace, precio_por_vista, nombre_canal)
+VALUES ('https://www.youtube.com/watch?v=hPr-Yc92qaY', 2, 'HolaSoyGerman');
 
 
 -- Editar un video.
@@ -40,8 +40,8 @@ WHERE enlace = 'https://www.youtube.com/watch?v=hPr-Yc92qaY';
 
 -- Crear un canal.
 
-INSERT INTO Canales(nombre, tema)
-VALUES ('HolaSoyGerman','Entretenimiento');
+INSERT INTO Canales (nombre, tema, correo_usuario)
+VALUES ('HolaSoyGerman','Entretenimiento', 'jsaladino@fi.uba.ar');
 
 
 -- Editar un canal.
@@ -69,12 +69,12 @@ FROM Usuarios;
 SELECT c.*, COUNT(*) AS suscriptores
 FROM Canales AS c
 JOIN Suscripciones AS s
-    ON c.nombre = s.nombre
+    ON c.nombre = s.nombre_canal
 GROUP BY c.nombre
 HAVING COUNT(*) >= ALL (
     SELECT COUNT(*)
     FROM Suscripciones
-    GROUP BY nombre
+    GROUP BY nombre_canal
 );
 
 
@@ -82,8 +82,8 @@ HAVING COUNT(*) >= ALL (
 
 SELECT *
 FROM Videos
-WHERE likes >= ALL(
-    SELECT likes FROM videos
+WHERE me_gustas >= ALL(
+    SELECT me_gustas FROM videos
 );
 
 
