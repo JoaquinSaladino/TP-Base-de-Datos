@@ -1,3 +1,4 @@
+-- SQLBook: Code
 -- Registrar un usuario.
 
 INSERT INTO Usuarios (correo, pais, ingresos)
