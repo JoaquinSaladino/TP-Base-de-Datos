@@ -1,16 +1,27 @@
--- SQLBook: Code
--- Registrar Varios Usuarios.
+SET search_path TO bdd_tp;
 
+-- Registrar Varios Usuarios.
 INSERT INTO Usuarios (correo, pais)
 VALUES 
     ('cvasquez@fi.uba.ar','Argentina'),
     ('flamas@fi.uba.ar','Argentina'),
     ('lcascini@fi.uba.ar','Argentina'),
-    ('jsaladino@fi.uba.ar','Argentina'),
+    ('jsaladino@fi.uba.ar', 'Argentina'),
     ('mgomez@fi.uba.ar','Argentina');
-    ('profesor1@fi.uba.ar','Uruguay');
-    ('profesor2@fi.uba.ar','Chile');
+INSERT INTO Usuarios (correo, pais)
+VALUES 
+    ('profesor1@fi.uba.ar','Uruguay'),
+    ('profesor2@fi.uba.ar','Chile'),
     ('profesor3@fi.uba.ar','Paraguay');
+
+-- Registrar canales
+
+INSERT INTO Canales (nombre, tema, correo_usuario)
+VALUES 
+    ('Base de Datos - FIUBA','Bases de Datos' , 'profesor1@fi.uba.ar'),
+    ('Algoritmos Fiuba Curso Buchwald','Algoritmos' ,'profesor1@fi.uba.ar'),
+    ('Probabilidad Fiuba','Probabilidad y Estadisticas' ,'profesor2@fi.uba.ar'),
+    ('fiuba-sisop','Sistemas Operativos' , 'profesor3@fi.uba.ar');
 
 -- Registrar Varios Videos
 
@@ -27,7 +38,8 @@ VALUES
     ('https://youtu.be/le10Vvapvh0', 100, 30, 2, 200000,'Base de Datos - FIUBA'),
     ('https://youtu.be/qTE6hE1a_vU', 5000, 4142, 1, 1000000,'Probabilidad Fiuba'),
     ('https://youtu.be/yFwPswAfvqw', 5000, 4000, 4, 100000,'fiuba-sisop');
-    ('https://youtu.be/jPCJIB1f7jk', 4300000,5000,9,180000000 , 'Algoritmos Fiuba Curso Buchwald')
+INSERT INTO Videos (enlace, me_gustas, no_me_gustas, precio_por_vista, vistas, nombre_canal)
+VALUES ('https://youtu.be/jPCJIB1f7jk', 4300000,5000,9,180000000 , 'Algoritmos Fiuba Curso Buchwald');
 
 INSERT INTO Videos (enlace, vistas, nombre_canal)
 VALUES 
@@ -38,16 +50,6 @@ INSERT INTO Videos (enlace, me_gustas, nombre_canal)
 VALUES 
     ('https://youtu.be/y3cvKK9wDUw', 9999999 ,'fiuba-sisop'),
     ('https://youtu.be/A6xe4tKdx_c', 9999999 , 'Algoritmos Fiuba Curso Buchwald');
-
-
--- Registrar canales
-
-INSERT INTO Canales (nombre, tema, correo_usuario)
-VALUES 
-    ('Base de Datos - FIUBA','Bases de Datos' , 'profesor1@fi.uba.ar'),
-    ('Algoritmos Fiuba Curso Buchwald','Algoritmos' ,'profesor1@fi.uba.ar')
-    ('Probabilidad Fiuba','Probabilidad y Estadisticas' ,'profesor2@fi.uba.ar'),
-    ('fiuba-sisop','Sistemas Operativos' , 'profesor3@fi.uba.ar');
 
 INSERT INTO Suscripciones (correo_usuario, nombre_canal)
 VALUES 
